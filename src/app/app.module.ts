@@ -7,7 +7,6 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { SocialLoginModule,
   AuthServiceConfig, GoogleLoginProvider } from 'angularx-social-login';
-import { NavbarComponent } from './navbar/navbar.component';
 
 const config = new AuthServiceConfig([{
   id: GoogleLoginProvider.PROVIDER_ID,
@@ -21,8 +20,7 @@ export function provideConfig() {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    NavbarComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
