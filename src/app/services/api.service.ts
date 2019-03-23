@@ -6,12 +6,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
   apiUrl: string = 'http://localhost:8000';
+  apiUrlProd: string = 'http://backen-develop.herokuapp.com/'
   token: any;
 
   constructor(private http: HttpClient) { }
 
   sendToRestApiMethod(userData) : void {
-    this.http.post(this.apiUrl + "/connect/google", {token : userData.idToken}).subscribe(
+    this.http.post(this.apiUrlProd + "/connect/google", {token : userData.idToken}).subscribe(
       onSuccess  => {
         localStorage.setItem('user', JSON.stringify(userData));
       }, onFail => {
