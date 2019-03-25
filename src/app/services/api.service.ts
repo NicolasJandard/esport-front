@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiService {
   apiUrl: string = 'http://localhost:8000';
-  apiUrlProd: string = 'http://backen-develop.herokuapp.com/'
+  apiUrlProd: string = 'https://backen-develop.herokuapp.com'
   token: any;
 
   constructor(private http: HttpClient) { }
