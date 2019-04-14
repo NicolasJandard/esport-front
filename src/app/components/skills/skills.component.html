@@ -1,0 +1,63 @@
+<div class="col-md-12 m-2">
+  <h4>Search Filter</h4>
+  <form #f='ngForm'(ngSubmit)="formSubmit(f)" novalidate>
+  <div class="form-group">
+    <input type="text" class="form-control" name="ability" ngModel>
+  </div>
+  </form>
+  <button class="btn btn-danger" (click)="resetAbilities()">Reset</button>
+</div>
+<div class="col-md-12 m-2">
+  <table class="table table-striped">
+    <thead>
+      <th scope="col">Ability ID</th>
+      <th scope="col">Name</th>
+      <th scope="col">Effect</th>
+      <th scope="col">Type</th>
+    </thead>
+    <tr *ngFor="let ability of abilities" (click)="openModal(content, ability.object)">
+      <th scope="row">#{{ability.ability_id}}</th>
+      <td>{{ability.name}}</td>
+      <td>{{ability.effect}}</td>
+      <td>{{ability.type}}</td>
+    </tr>
+  </table>
+  <div>
+    <button class="btn btn-danger" (click)="loadPage(previous)">Previous page</button>
+    <button class="btn btn-danger float-right" (click)="loadPage(next)">Next page</button>
+  </div>
+</div>
+
+<!--Modal-->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <div>
+      <h4 class="modal-title">{{ability.name | uppercase}}</h4>
+      <h6>ability ID : {{ability.id}}</h6>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="col-md-12">
+      <table class="table table-bordered table-condensed table-hover">
+        <th colspan="2">Characteristics</th>
+        <tr><td>Category</td><td>{{ability.meta.category.name}}</td></tr>
+        <tr><td>Target</td><td>{{ability.target.name}}</td></tr>
+        <tr><td>Power</td><td>{{ability.power}}</td></tr>
+        <tr><td>Power points</td><td>{{ability.pp}}</td></tr>
+        <tr><td>Priority</td><td>{{ability.priority}}</td></tr>
+        <tr><td>Critical chance</td><td>{{ability.meta.crit_rate}}%</td></tr>
+        <tr><td>Accuracy</td><td>{{ability.accuracy}}%</td></tr>
+      </table>
+    </div>
+    <div class="col-md-12">
+      <table class="table table-bordered table-condensed">
+        <thead>
+          <th>Effect</th>
+        </thead>
+        <tr>
+          <td>{{ability.effect_entries[0].effect}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ng-template>

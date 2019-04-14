@@ -1,0 +1,24 @@
+.modal-body table td {
+  padding: 0;
+  text-align: center;
+}
+.modal-body table th {
+  text-align: center;
+}
+
+.active tr {
+width: 100%;
+display: inline-table;
+table-layout: fixed;
+}
+
+.active table {
+ height:251px;
+ display: -moz-groupbox;
+}
+.active tbody {
+  overflow-y: scroll;
+  height: 199px;
+  width: 96.5%;
+  position: absolute;
+}

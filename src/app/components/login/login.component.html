@@ -1,0 +1,12 @@
+<div class="bg-img"></div>
+<div class="col-sm-9 col-md-5 col-lg-5 mx-auto">
+  <div class="card card-signin my-5">
+    <div *ngIf="!user" class="card-body">
+      <h5 class="card-title text-center">Login</h5>
+      <button class="btn btn-google" type="submit" (click)="signInWithGoogle()">
+        <fa-icon [icon]="faGoogle" class="fa-lg mr-2"></fa-icon>
+        Login with Google
+      </button>
+    </div>
+  </div>
+</div>

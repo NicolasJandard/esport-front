@@ -1,0 +1,75 @@
+<div class="col-md-12 m-2">
+  <h4>Search Filter</h4>
+  <form #f='ngForm'(ngSubmit)="formSubmit(f)" novalidate>
+  <div class="form-group">
+    <input type="text" class="form-control" name="pokemon" ngModel>
+  </div>
+  </form>
+  <button class="btn btn-danger" (click)="resetPokedex()">Reset</button>
+</div>
+<div class="col-md-12 m-2">
+  <table class="table table-striped">
+    <thead>
+      <th scope="col">Pokedex ID</th>
+      <th scope="col">Appearance</th>
+      <th scope="col">Name</th>
+      <th scope="col">Types</th>
+    </thead>
+    <tr *ngFor="let pokemon of pokemons" (click)="openModal(content, pokemon.object)">
+      <th scope="row">#{{pokemon.num_pokedex}}</th>
+      <td><img src="{{pokemon.image}}"/></td>
+      <td>{{pokemon.name}}</td>
+      <td>{{pokemon.types}}</td>
+    </tr>
+  </table>
+  <div>
+    <button class="btn btn-danger" (click)="loadPage(previous)">Previous page</button>
+    <button class="btn btn-danger float-right" (click)="loadPage(next)">Next page</button>
+  </div>
+</div>
+
+<!--Modal-->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <img src="{{pokemon.sprites.front_default}}"/>
+    <img src="{{pokemon.sprites.front_shiny}}"/>
+    <div>
+      <h4 class="modal-title">{{pokemon.name | uppercase}}</h4>
+      <h6>Pokedex ID : {{pokemon.id}}</h6>
+      <h6>Weight : {{pokemon.weight}}</h6>
+    </div>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-7">
+        <table class="table table-bordered table-condensed table-hover">
+            <th colspan="2">Base stats</th>
+          <tr *ngFor="let row of pokemon.stats">
+            <td>{{row.stat.name}}</td>
+            <td>{{row.base_stat}}</td>
+          </tr>
+        </table>
+      </div>
+      <div class="col-md-5">
+        <table class="table table-bordered table-condensed">
+          <thead>
+            <th>Passive abilities</th>
+          </thead>
+          <tr *ngFor="let row of pokemon.abilities">
+            <td>{{row.ability.name | uppercase}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-11 active">
+      <table class="table table-bordered table-striped">
+        <thead>
+          <th>Active abilities</th>
+        </thead>
+        <tr *ngFor="let row of pokemon.moves">
+          <td>{{row.move.name}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</ng-template>

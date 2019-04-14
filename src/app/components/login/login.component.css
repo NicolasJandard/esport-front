@@ -1,0 +1,50 @@
+.bg-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background-image: url('../../../assets/img/pokemon_map.jpeg');
+  background-size: cover;
+  filter: blur(2px);
+  opacity: .9;
+  z-index: -99;
+}
+
+.card-signin {
+  border-radius: 0;
+  width: 21.5em;
+  margin: 0 auto;
+  border: 0;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  margin-bottom: 2rem;
+  font-weight: 300;
+  font-size: 1.5rem;
+}
+
+.card-body {
+  padding: 2em;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.btn-google {
+  display: block;
+  border: 0;
+  font-size: 80%;
+  font-weight: bold;
+  margin: auto;
+  color: white;
+  background-color: #ea4335;
+  text-transform: uppercase;
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+}
+
+.btn-google:hover {
+  background-color: #b22e23;
+}

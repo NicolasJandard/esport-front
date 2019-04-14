@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <a class="navbar-brand" routerLink="">
+    <img src="../../../assets/img/pokeball.svg" width="30" height="30" class="d-inline-block align-top"/>
+    PokeTeams
+  </a>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="pokedex">Pokedex</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="skills">Abilities</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav">
+      <li *ngIf="!user else userLogged" class="nav-item">
+        <a class="nav-link" routerLink="login">Login</a>
+      </li>
+      <ng-template #userLogged>
+        <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
+          <img class="resize" src="{{ user.photoUrl }}"/>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+          <div class="row align-items-center">
+            <div class="col-md-3">
+              <img class="user-pic" src="{{ user.photoUrl }}"/>
+            </div>
+            <div class="col-md-9">
+              <span class="dropdown-span user-name">{{ user.name }}</span>
+              <span class="dropdown-span user-email">{{ user.email }}</span>
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <button class="btn btn-logout" (click)="signOut()">Logout</button>
+        </div>
+      </li>
+      </ng-template>
+    </ul>
+  </div>
+</nav>
