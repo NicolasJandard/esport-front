@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://backen-develop.herokuapp.com'
+  baseUrl: 'https://rencontr-esport-develop-back.herokuapp.com/'
 };
