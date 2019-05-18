@@ -11,6 +11,9 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="skills">Abilities</a>
       </li>
+      <li *ngIf="user" class="nav-item">
+        <a class="nav-link" routerLink="create">Create a team</a>
+      </li>
     </ul>
     <ul class="navbar-nav">
       <li *ngIf="!user else userLogged" class="nav-item">

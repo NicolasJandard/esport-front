@@ -8,6 +8,8 @@ import { map, catchError, switchMap } from 'rxjs/operators';
 })
 
 export class ApiService {
+  static readonly MAX_POKEMON = 964;
+
   apiUrlPokemon: string = 'https://pokeapi.co/api/v2/';
   cache: Array<any>;
   private currentSubject: BehaviorSubject<any>;
@@ -38,6 +40,11 @@ export class ApiService {
   getPokemon(id: any): Observable<any> {
     //id ou nom
     let url = this.apiUrlPokemon + "pokemon/" + id;
+    return this.getRequest(url);
+  }
+
+  getAllPokemons(): Observable<any> {
+    let url = this.apiUrlPokemon + "pokemon?offset=0&limit=" + ApiService.MAX_POKEMON;
     return this.getRequest(url);
   }
 

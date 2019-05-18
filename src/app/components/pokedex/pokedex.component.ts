@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { switchMap, map } from 'rxjs/operators';
-import { forkJoin, of } from 'rxjs';
-
 import { ApiService } from '../../services/api/api.service';
 
 @Component({

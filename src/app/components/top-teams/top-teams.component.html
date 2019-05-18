@@ -1,0 +1,104 @@
+<div *ngFor="let team of teams" class="col-lg-12 m-2">
+  <table class="table table-condensed">
+    <thead class="thead-light">
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Image</th>
+      <th scope="col">Passive ability</th>
+      <th scope="col">Moves</th>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">#1</th>
+        <td>{{team.pokemonOne.name | titlecase}}</td>
+        <td><img src="{{team.pokemonOne.image}}" /></td>
+        <td>{{team.pokemonOne.passive | titlecase}}</td>
+        <td>
+          <ul class="list-inline">
+            <li class="list-inline-item">{{team.pokemonOne.abilityOne | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonOne.abilityTwo | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonOne.abilityThree | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonOne.abilityFour | titlecase}}</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">#2</th>
+        <td>{{team.pokemonTwo.name | titlecase}}</td>
+        <td><img src="{{team.pokemonTwo.image}}" /></td>
+        <td>{{team.pokemonTwo.passive | titlecase}}</td>
+        <td>
+          <ul class="list-inline">
+            <li class="list-inline-item">{{team.pokemonTwo.abilityOne | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonTwo.abilityTwo | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonTwo.abilityThree | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonTwo.abilityFour | titlecase}}</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">#3</th>
+        <td>{{team.pokemonThree.name | titlecase}}</td>
+        <td><img src="{{team.pokemonThree.image}}" /></td>
+        <td>{{team.pokemonThree.passive | titlecase}}</td>
+        <td>
+          <ul class="list-inline">
+            <li class="list-inline-item">{{team.pokemonThree.abilityOne | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonThree.abilityTwo | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonThree.abilityThree | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonThree.abilityFour | titlecase}}</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">#4</th>
+        <td>{{team.pokemonFour.name | titlecase}}</td>
+        <td><img src="{{team.pokemonFour.image}}" /></td>
+        <td>{{team.pokemonFour.passive | titlecase}}</td>
+        <td>
+          <ul class="list-inline">
+            <li class="list-inline-item">{{team.pokemonFour.abilityOne | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonFour.abilityTwo | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonFour.abilityThree | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonFour.abilityFour | titlecase}}</li>
+          </ul>
+        </td>
+      </tr> 
+      <tr>
+        <th scope="row">#5</th>
+        <td>{{team.pokemonFive.name | titlecase}}</td>
+        <td><img src="{{team.pokemonFive.image}}" /></td>
+        <td>{{team.pokemonFive.passive | titlecase}}</td>
+        <td>
+          <ul class="list-inline">
+            <li class="list-inline-item">{{team.pokemonFive.abilityOne | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonFive.abilityTwo | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonFive.abilityThree | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonFive.abilityFour | titlecase}}</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">#6</th>
+        <td>{{team.pokemonSix.name | titlecase}}</td>
+        <td><img src="{{team.pokemonSix.image}}" /></td>
+        <td>{{team.pokemonSix.passive | titlecase}}</td>
+        <td>
+          <ul class="list-inline">
+            <li class="list-inline-item">{{team.pokemonSix.abilityOne | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonSix.abilityTwo | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonSix.abilityThree | titlecase}}</li>
+            <li class="list-inline-item">{{team.pokemonSix.abilityFour | titlecase}}</li>
+          </ul>
+        </td>
+      </tr> 
+    </tbody>
+  </table>
+  <div class="bg-light">
+    <p>{{team.comment}}</p>
+  </div>
+  <div>
+    <p class="float-right">Team created by : <img src="{{team.creatorImage}}" width="25" height="25"> {{team.creator}}</p>
+  </div>
+</div>
+

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { AuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from '../../../environments/environment';
@@ -9,7 +9,8 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 
-export class AuthenticationService {
+export class AuthenticationService implements CanActivate {
+
   private currentUserSubject: BehaviorSubject<any>;
   public currentUser: Observable<any>;
 
@@ -40,5 +41,20 @@ export class AuthenticationService {
       localStorage.removeItem('user');
       this.currentUserSubject.next(null);
     });
+  }
+
+  isAuthenticated(): boolean {
+    if(localStorage.getItem('user')) {
+      return true;
+    }
+    return false;
+  }
+
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+    const isAuth = this.isAuthenticated();
+    if(!isAuth){
+      this.router.navigate(['/login'])
+    }
+    return isAuth;
   }
 }

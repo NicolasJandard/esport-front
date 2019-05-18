@@ -1,0 +1,63 @@
+<div class="col-lg-12 m-2">
+  <form #f='ngForm'(ngSubmit)="formSubmit(f)" novalidate>
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Image</th>
+        <th scope="col">Passive ability</th>
+        <th scope="col">Moves</th>
+      </thead>
+      <tr *ngFor="let i of maxSizeTeam">
+        <th scope="row">#{{i+1}}</th>
+        <td>
+          <select name="pokemon_{{i}}" class="form-control" (change)="updatePokemon($event.target.value, i)" ngModel>
+            <option *ngFor="let pokemon of pokemonList" value="{{pokemon.name}}">
+              {{pokemon.name | titlecase}}
+            </option>
+          </select>
+        </td>
+        <td><img *ngIf="pokemonTeamList[i]" src="{{pokemonTeamList[i].sprites.front_default}}"></td>
+        <td>
+          <ng-container *ngIf="pokemonTeamList[i]">
+            <select *ngIf="pokemonTeamList[i]" name="passive_{{i}}" class="form-control" ngModel>
+              <option *ngFor="let row of pokemonTeamList[i].abilities" value="{{row.ability.name}}">
+                {{row.ability.name | titlecase}}
+              </option>
+            </select>
+          </ng-container>
+        </td>
+        <td>
+          <ng-container *ngIf="pokemonTeamList[i]">
+            <select *ngFor="let j of maxSizeMove" name="active_{{i}}_{{j}}" class="form-control" ngModel>
+              <option *ngFor="let row of pokemonTeamList[i].moves" value="{{row.move.name}}">
+                  {{row.move.name | titlecase}}
+              </option>
+            </select>
+        </ng-container>
+        </td>
+      </tr>
+    </table>
+    <div class="row">
+      <div class="col-lg-10">
+        <label for="comment">Comment :</label>
+        <textarea class="form-control" rows="3" name="comment" ngModel></textarea>
+      </div>
+      <div class="col-lg-2">
+        <label for="tier">Tier :</label>
+        <select name="tier" class="form-control" ngModel>
+          <option value="uber">Ubers</option>
+          <option value="ou">Over Used</option>
+          <option value="uu">Under used</option>
+          <option value="ru">Rarely Used</option>
+          <option value="nu">Never Used</option>
+          <option value="no">Others (no tier)</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-lg-12 m-2">
+      <label for="tier">Creator : {{user.name}}</label>
+      <button class="btn btn-danger float-right">Create team</button>
+    </div>
+  </form>
+</div>

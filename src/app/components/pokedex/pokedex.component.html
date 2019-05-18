@@ -56,7 +56,7 @@
             <th>Passive abilities</th>
           </thead>
           <tr *ngFor="let row of pokemon.abilities">
-            <td>{{row.ability.name | uppercase}}</td>
+            <td>{{row.ability.name | titlecase}}</td>
           </tr>
         </table>
       </div>

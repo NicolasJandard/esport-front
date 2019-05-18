@@ -15,6 +15,8 @@ import { SkillsComponent } from './components/skills/skills.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { CacheService } from './services/api/cache.service';
 import { CachingInterceptor } from './services/api/cache-interceptor.service';
+import { CreateTeamComponent } from './components/create-team/create-team.component';
+import { TopTeamsComponent } from './components/top-teams/top-teams.component';
 
 const config = new AuthServiceConfig([{
   id: GoogleLoginProvider.PROVIDER_ID,
@@ -31,7 +33,9 @@ export function provideConfig() {
     LoginComponent,
     PokedexComponent,
     SkillsComponent,
-    NavbarComponent
+    NavbarComponent,
+    CreateTeamComponent,
+    TopTeamsComponent
   ],
   imports: [
     BrowserModule,
