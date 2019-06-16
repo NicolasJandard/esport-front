@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,7 @@ import { CacheService } from './services/api/cache.service';
 import { CachingInterceptor } from './services/api/cache-interceptor.service';
 import { CreateTeamComponent } from './components/create-team/create-team.component';
 import { TopTeamsComponent } from './components/top-teams/top-teams.component';
+import { ViewTeamComponent } from './components/view-team/view-team.component';
 
 const config = new AuthServiceConfig([{
   id: GoogleLoginProvider.PROVIDER_ID,
@@ -35,7 +36,8 @@ export function provideConfig() {
     SkillsComponent,
     NavbarComponent,
     CreateTeamComponent,
-    TopTeamsComponent
+    TopTeamsComponent,
+    ViewTeamComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,8 @@ export function provideConfig() {
     AppRoutingModule,
     FontAwesomeModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: AuthServiceConfig, useFactory: provideConfig },

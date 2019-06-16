@@ -1,0 +1,131 @@
+<div class="col-lg-12 mb-2 mt-2">
+  <table class="table table-condensed">
+    <thead class="thead-light">
+      <th scope="col">#</th>
+      <th scope="col">Pokemon</th>
+      <th scope="col">Passive ability</th>
+      <th scope="col">Moves</th>
+    </thead>
+    <tbody>
+      <tr *ngIf="team.pokemonOne">
+        <th scope="row">#1</th>
+        <td><img src="{{team.pokemonOne.image}}" /></td>
+        <td>{{team.pokemonOne.passive | titlecase}}</td>
+        <td>
+          <ul>
+            <li>{{team.pokemonOne.abilityOne | titlecase}}</li>
+            <li>{{team.pokemonOne.abilityTwo | titlecase}}</li>
+            <li>{{team.pokemonOne.abilityThree | titlecase}}</li>
+            <li>{{team.pokemonOne.abilityFour | titlecase}}</li>
+          </ul>
+        </td>
+      </tr>
+      <tr *ngIf="team.pokemonTwo">
+        <th scope="row">#2</th>
+        <td><img src="{{team.pokemonTwo.image}}" /></td>
+        <td>{{team.pokemonTwo.passive | titlecase}}</td>
+        <td>
+          <ul>
+            <li>{{team.pokemonTwo.abilityOne | titlecase}}</li>
+            <li>{{team.pokemonTwo.abilityTwo | titlecase}}</li>
+            <li>{{team.pokemonTwo.abilityThree | titlecase}}</li>
+            <li>{{team.pokemonTwo.abilityFour | titlecase}}</li>
+          </ul>
+        </td>
+      </tr>
+      <tr *ngIf="team.pokemonThree">
+        <th scope="row">#3</th>
+        <td><img src="{{team.pokemonThree.image}}" /></td>
+        <td>{{team.pokemonThree.passive | titlecase}}</td>
+        <td>
+          <ul>
+            <li>{{team.pokemonThree.abilityOne | titlecase}}</li>
+            <li>{{team.pokemonThree.abilityTwo | titlecase}}</li>
+            <li>{{team.pokemonThree.abilityThree | titlecase}}</li>
+            <li>{{team.pokemonThree.abilityFour | titlecase}}</li>
+          </ul>
+        </td>
+      </tr>
+      <tr *ngIf="team.pokemonFour">
+        <th scope="row">#4</th>
+        <td><img src="{{team.pokemonFour.image}}" /></td>
+        <td>{{team.pokemonFour.passive | titlecase}}</td>
+        <td>
+          <ul>
+            <li>{{team.pokemonFour.abilityOne | titlecase}}</li>
+            <li>{{team.pokemonFour.abilityTwo | titlecase}}</li>
+            <li>{{team.pokemonFour.abilityThree | titlecase}}</li>
+            <li>{{team.pokemonFour.abilityFour | titlecase}}</li>
+          </ul>
+        </td>
+      </tr> 
+      <tr *ngIf="team.pokemonFive">
+        <th scope="row">#5</th>
+        <td><img src="{{team.pokemonFive.image}}" /></td>
+        <td>{{team.pokemonFive.passive | titlecase}}</td>
+        <td>
+          <ul>
+            <li>{{team.pokemonFive.abilityOne | titlecase}}</li>
+            <li>{{team.pokemonFive.abilityTwo | titlecase}}</li>
+            <li>{{team.pokemonFive.abilityThree | titlecase}}</li>
+            <li>{{team.pokemonFive.abilityFour | titlecase}}</li>
+          </ul>
+        </td>
+      </tr>
+      <tr *ngIf="team.pokemonSix">
+        <th scope="row">#6</th>
+        <td><img src="{{team.pokemonSix.image}}" /></td>
+        <td>{{team.pokemonSix.passive | titlecase}}</td>
+        <td>
+          <ul>
+            <li>{{team.pokemonSix.abilityOne | titlecase}}</li>
+            <li>{{team.pokemonSix.abilityTwo | titlecase}}</li>
+            <li>{{team.pokemonSix.abilityThree | titlecase}}</li>
+            <li>{{team.pokemonSix.abilityFour | titlecase}}</li>
+          </ul>
+        </td>
+      </tr> 
+    </tbody>
+  </table>
+  <div class="bg-light">
+    <p>{{team.comment}}</p>
+  </div>
+  <div>
+    <span *ngIf="team.tier">Tier : {{returnTier(team.tier)}}</span>
+    <span class="float-right">Team created by : <img src="{{team.creatorImage}}" width="25" height="25"> {{team.creator}}</span>
+  </div>
+</div>
+<div class="col-lg-12 mt-2 mb-2 comment-wrapper">
+    <div class="col-lg-12 panel-body">
+      <div *ngIf="user && !alreadyCommented">
+        <form #f='ngForm'(ngSubmit)=" f.valid && formSubmit(f)" novalidate>
+          <span>Rate this team </span><ngb-rating name="rating" required ngModel></ngb-rating>
+          <textarea class="form-control mb-1" name="comment" placeholder="Write your comment..." rows="3" ngModel></textarea>
+          <button class="btn btn-danger float-right">Post</button>
+        </form>
+      </div>
+      <div *ngIf="alreadyCommented">
+        <p>You already have rated this team</p>
+      </div>
+      <div class="clearfix"></div>
+      <div *ngIf="comments.length">
+        <hr>
+        <ul class="media-list">
+            <li *ngFor="let comment of comments" class="media">
+                <a href="#" class="float-left">
+                    <img [src]="comment.authorImage">
+                </a>
+                <div class="media-body">
+                    <span class="text-muted float-right">
+                        <small class="text-muted">{{comment.date | date}}</small>
+                    </span>
+                    <strong class="text-danger">{{comment.author}} </strong>
+                    <ngb-rating [rate]="comment.rate" [readonly]="true"></ngb-rating>
+                    <p>{{comment.text}}</p>
+                </div>
+            </li>
+        </ul>
+      </div>
+    </div>
+</div>
+

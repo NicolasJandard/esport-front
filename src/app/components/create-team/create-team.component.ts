@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api/api.service';
 import { TeamsService } from 'src/app/services/teams/teams.service';
 
@@ -12,9 +13,10 @@ export class CreateTeamComponent implements OnInit {
   pokemonTeamList = [];
   maxSizeTeam = Array(6).fill(0).map((x,i)=>i);
   maxSizeMove = Array(4).fill(0).map((x,i)=>i);
-  user;
+  user: JSON;
+  flag: number;
 
-  constructor(private api: ApiService, private teams: TeamsService) { }
+  constructor(private api: ApiService, private teams: TeamsService, private router: Router) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
@@ -36,7 +38,13 @@ export class CreateTeamComponent implements OnInit {
   }
 
   formSubmit(f) {
-    this.teams.createTeam(f.value, this.user, this.pokemonTeamList);
+    console.log(f.value);
+    this.teams.createTeam(f.value, this.user, this.pokemonTeamList).subscribe(
+      onSuccess => {
+        this.router.navigate(['/']);
+      }, onFail => {
+        this.flag = 500;
+      }
+    );
   }
-
 }

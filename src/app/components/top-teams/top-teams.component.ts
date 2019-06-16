@@ -10,12 +10,24 @@ import { TeamsService } from 'src/app/services/teams/teams.service';
 export class TopTeamsComponent implements OnInit {
   teams;
 
-  constructor(private api: ApiService, private teamsService: TeamsService) { }
+  constructor(private teamsService: TeamsService) { }
 
   ngOnInit() {
     this.teamsService.getTopTeams().subscribe(response => {
       this.teams = response
     });
+  }
+
+  returnTier(tier: String): String {
+    switch(tier) {
+      case "uber" : return "Ubers";
+      case "ou" : return "Over Used";
+      case "uu" : return "Under used";
+      case "ru" : return "Rarely Used";
+      case "nu" : return "Never Used";
+      case "no" : return "Others";
+      default : return "";
+    }
   }
 
 }

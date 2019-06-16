@@ -8,13 +8,15 @@ import { SkillsComponent } from './components/skills/skills.component';
 import { CreateTeamComponent } from './components/create-team/create-team.component';
 import { TopTeamsComponent } from './components/top-teams/top-teams.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
+import { ViewTeamComponent } from './components/view-team/view-team.component';
 
 const routes: Routes = [
   {path: '', component: TopTeamsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'pokedex', component: PokedexComponent },
   { path: 'skills', component: SkillsComponent },
-  { path: 'create', component: CreateTeamComponent, canActivate: [AuthenticationService]}
+  { path: 'create', component: CreateTeamComponent, canActivate: [AuthenticationService]},
+  { path: 'view/:id', component: ViewTeamComponent }
 ];
 
 @NgModule({

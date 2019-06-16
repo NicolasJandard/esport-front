@@ -1,5 +1,8 @@
 <div class="col-lg-12 m-2">
-  <form #f='ngForm'(ngSubmit)="formSubmit(f)" novalidate>
+  <form #f='ngForm'(ngSubmit)=" f.valid && formSubmit(f)" novalidate>
+    <div *ngIf="f.invalid" class="alert alert-danger">
+      Your team needs to contain 6 pokemons with abilities
+    </div>
     <table class="table table-bordered">
       <thead class="thead-light">
         <th scope="col">#</th>
@@ -11,7 +14,7 @@
       <tr *ngFor="let i of maxSizeTeam">
         <th scope="row">#{{i+1}}</th>
         <td>
-          <select name="pokemon_{{i}}" class="form-control" (change)="updatePokemon($event.target.value, i)" ngModel>
+          <select name="pokemon_{{i}}" class="form-control" (change)="updatePokemon($event.target.value, i)" required ngModel>
             <option *ngFor="let pokemon of pokemonList" value="{{pokemon.name}}">
               {{pokemon.name | titlecase}}
             </option>
@@ -20,7 +23,7 @@
         <td><img *ngIf="pokemonTeamList[i]" src="{{pokemonTeamList[i].sprites.front_default}}"></td>
         <td>
           <ng-container *ngIf="pokemonTeamList[i]">
-            <select *ngIf="pokemonTeamList[i]" name="passive_{{i}}" class="form-control" ngModel>
+            <select *ngIf="pokemonTeamList[i]" name="passive_{{i}}" class="form-control" required ngModel>
               <option *ngFor="let row of pokemonTeamList[i].abilities" value="{{row.ability.name}}">
                 {{row.ability.name | titlecase}}
               </option>
@@ -29,7 +32,7 @@
         </td>
         <td>
           <ng-container *ngIf="pokemonTeamList[i]">
-            <select *ngFor="let j of maxSizeMove" name="active_{{i}}_{{j}}" class="form-control" ngModel>
+            <select *ngFor="let j of maxSizeMove" name="active_{{i}}_{{j}}" class="form-control" required ngModel>
               <option *ngFor="let row of pokemonTeamList[i].moves" value="{{row.move.name}}">
                   {{row.move.name | titlecase}}
               </option>
@@ -57,7 +60,10 @@
     </div>
     <div class="col-lg-12 m-2">
       <label for="tier">Creator : {{user.name}}</label>
-      <button class="btn btn-danger float-right">Create team</button>
+      <button [disabled]="!f.form.valid" class="btn btn-danger float-right">Create team</button>
+    </div>
+    <div *ngIf="flag == 500" class="alert alert-danger">
+      Something wrong happened
     </div>
   </form>
 </div>

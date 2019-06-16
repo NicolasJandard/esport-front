@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
 
@@ -10,27 +9,34 @@ import { map } from 'rxjs/operators';
 export class TeamsService {
   apiUrl: any = environment.baseUrl;
 
-  constructor(private http: HttpClient, private router: Router) { }
+  flag: boolean = false;
+
+  constructor(private http: HttpClient) { }
 
   private extractData(res: Response) {
     return res || {};
   }
 
-  createTeam(data, user, pokeTeamList): void {
+  createTeam(data, user, pokeTeamList) {
     let team = this.formValuesAsJSON(data, user, pokeTeamList);
-    this.http.post(this.apiUrl + "/team/create", team).subscribe(
-      onSuccess => {
-
-      }, onFail => {
-
-      }
-    );
-
-    this.router.navigate(['']);
+    return this.http.post(this.apiUrl + "/team/create", team);
   }
 
   getTopTeams() {
     return this.http.get(this.apiUrl + '/team/top').pipe(map(this.extractData));
+  }
+
+  getDetailsTeam(team : number) {
+    return this.http.get(this.apiUrl + '/team/details/' + team).pipe(map(this.extractData));
+  }
+
+  getCommentsTeam(team : number) {
+    return this.http.get(this.apiUrl + '/team/comments/' + team).pipe(map(this.extractData));
+  }
+
+  postComment(formValues, userEmail, teamId) {
+    let comment = this.formCommentAsJSON(formValues, userEmail, teamId);
+    return this.http.post(this.apiUrl + "/team/comment", comment);
   }
 
   private formValuesAsJSON(data, user, pokeTeamList) {
@@ -49,5 +55,15 @@ export class TeamsService {
     };
 
     return team;
+  }
+
+  private formCommentAsJSON(data, userEmail, teamId) {
+    let comment = {
+      text : data.comment,
+      author : userEmail,
+      rate : data.rating,
+      teamId : teamId
+    }
+    return comment;
   }
 }
