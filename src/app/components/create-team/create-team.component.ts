@@ -13,7 +13,7 @@ export class CreateTeamComponent implements OnInit {
   pokemonTeamList = [];
   maxSizeTeam = Array(6).fill(0).map((x,i)=>i);
   maxSizeMove = Array(4).fill(0).map((x,i)=>i);
-  user: JSON;
+  user = JSON.parse(localStorage.getItem('user'));
   flag: number;
 
   constructor(private api: ApiService, private teams: TeamsService, private router: Router) { }
