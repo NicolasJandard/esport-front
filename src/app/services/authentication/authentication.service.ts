@@ -29,8 +29,6 @@ export class AuthenticationService implements CanActivate {
           localStorage.setItem('user', JSON.stringify(userData));
           this.currentUserSubject.next(userData);
           this.router.navigate(['']);
-        }, onFail => {
-          //TODO
         }
       );
     });
@@ -40,6 +38,7 @@ export class AuthenticationService implements CanActivate {
     this.authService.signOut().then(() =>  {
       localStorage.removeItem('user');
       this.currentUserSubject.next(null);
+      this.router.navigate(['']);
     });
   }
 

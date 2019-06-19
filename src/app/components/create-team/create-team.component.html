@@ -3,6 +3,12 @@
     <div *ngIf="f.invalid" class="alert alert-danger">
       Your team needs to contain 6 pokemons with abilities
     </div>
+    <div class="row">
+      <div class="col-lg-11 m-2">
+        <label for="comment">Name :</label>
+        <input type="text" class="form-control" name="name" ngModel>
+      </div>
+    </div>
     <table class="table table-bordered">
       <thead class="thead-light">
         <th scope="col">#</th>

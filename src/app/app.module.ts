@@ -18,6 +18,7 @@ import { CachingInterceptor } from './services/api/cache-interceptor.service';
 import { CreateTeamComponent } from './components/create-team/create-team.component';
 import { TopTeamsComponent } from './components/top-teams/top-teams.component';
 import { ViewTeamComponent } from './components/view-team/view-team.component';
+import { MyTeamsComponent } from './components/my-teams/my-teams.component';
 
 const config = new AuthServiceConfig([{
   id: GoogleLoginProvider.PROVIDER_ID,
@@ -37,7 +38,8 @@ export function provideConfig() {
     NavbarComponent,
     CreateTeamComponent,
     TopTeamsComponent,
-    ViewTeamComponent
+    ViewTeamComponent,
+    MyTeamsComponent
   ],
   imports: [
     BrowserModule,

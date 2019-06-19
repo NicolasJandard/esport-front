@@ -1,99 +1,41 @@
 <div class="row m-2">
   <div *ngFor="let team of teams" class="col-lg-6 mb-2">
+    <h4>{{team.name}}</h4>
     <table class="table table-condensed">
       <thead class="thead-light">
         <th scope="col">#</th>
         <th scope="col">Pokemon</th>
-        <th scope="col">Passive ability</th>
-        <th scope="col">Moves</th>
       </thead>
       <tbody>
         <tr *ngIf="team.pokemonOne">
           <th scope="row">#1</th>
-          <td><img src="{{team.pokemonOne.image}}" /></td>
-          <td>{{team.pokemonOne.passive | titlecase}}</td>
-          <td>
-            <ul>
-              <li>{{team.pokemonOne.abilityOne | titlecase}}</li>
-              <li>{{team.pokemonOne.abilityTwo | titlecase}}</li>
-              <li>{{team.pokemonOne.abilityThree | titlecase}}</li>
-              <li>{{team.pokemonOne.abilityFour | titlecase}}</li>
-            </ul>
-          </td>
+          <td>{{team.pokemonOne.name | titlecase}}</td>
         </tr>
         <tr *ngIf="team.pokemonTwo">
           <th scope="row">#2</th>
-          <td><img src="{{team.pokemonTwo.image}}" /></td>
-          <td>{{team.pokemonTwo.passive | titlecase}}</td>
-          <td>
-            <ul>
-              <li>{{team.pokemonTwo.abilityOne | titlecase}}</li>
-              <li>{{team.pokemonTwo.abilityTwo | titlecase}}</li>
-              <li>{{team.pokemonTwo.abilityThree | titlecase}}</li>
-              <li>{{team.pokemonTwo.abilityFour | titlecase}}</li>
-            </ul>
-          </td>
+          <td>{{team.pokemonTwo.name | titlecase}}</td>
         </tr>
         <tr *ngIf="team.pokemonThree">
           <th scope="row">#3</th>
-          <td><img src="{{team.pokemonThree.image}}" /></td>
-          <td>{{team.pokemonThree.passive | titlecase}}</td>
-          <td>
-            <ul>
-              <li>{{team.pokemonThree.abilityOne | titlecase}}</li>
-              <li>{{team.pokemonThree.abilityTwo | titlecase}}</li>
-              <li>{{team.pokemonThree.abilityThree | titlecase}}</li>
-              <li>{{team.pokemonThree.abilityFour | titlecase}}</li>
-            </ul>
-          </td>
+          <td>{{team.pokemonThree.name | titlecase}}</td>
         </tr>
         <tr *ngIf="team.pokemonFour">
           <th scope="row">#4</th>
-          <td><img src="{{team.pokemonFour.image}}" /></td>
-          <td>{{team.pokemonFour.passive | titlecase}}</td>
-          <td>
-            <ul>
-              <li>{{team.pokemonFour.abilityOne | titlecase}}</li>
-              <li>{{team.pokemonFour.abilityTwo | titlecase}}</li>
-              <li>{{team.pokemonFour.abilityThree | titlecase}}</li>
-              <li>{{team.pokemonFour.abilityFour | titlecase}}</li>
-            </ul>
-          </td>
+          <td>{{team.pokemonFour.name | titlecase}}</td>
         </tr> 
         <tr *ngIf="team.pokemonFive">
           <th scope="row">#5</th>
-          <td><img src="{{team.pokemonFive.image}}" /></td>
-          <td>{{team.pokemonFive.passive | titlecase}}</td>
-          <td>
-            <ul>
-              <li>{{team.pokemonFive.abilityOne | titlecase}}</li>
-              <li>{{team.pokemonFive.abilityTwo | titlecase}}</li>
-              <li>{{team.pokemonFive.abilityThree | titlecase}}</li>
-              <li>{{team.pokemonFive.abilityFour | titlecase}}</li>
-            </ul>
-          </td>
+          <td>{{team.pokemonFive.name | titlecase}}</td>
         </tr>
         <tr *ngIf="team.pokemonSix">
           <th scope="row">#6</th>
-          <td><img src="{{team.pokemonSix.image}}" /></td>
-          <td>{{team.pokemonSix.passive | titlecase}}</td>
-          <td>
-            <ul>
-              <li>{{team.pokemonSix.abilityOne | titlecase}}</li>
-              <li>{{team.pokemonSix.abilityTwo | titlecase}}</li>
-              <li>{{team.pokemonSix.abilityThree | titlecase}}</li>
-              <li>{{team.pokemonSix.abilityFour | titlecase}}</li>
-            </ul>
-          </td>
+        <td>{{team.pokemonSix.name | titlecase}}</td>
         </tr> 
       </tbody>
     </table>
-    <div class="bg-light">
-      <p>{{team.comment}}</p>
-    </div>
     <div>
+      <a [routerLink]="['view', team.teamId]" class="mr-2">View details</a>
       <span *ngIf="team.tier">Tier : {{returnTier(team.tier)}}  </span>
-      <span [routerLink]="['view', team.teamId]">View reactions</span>
       <span class="float-right">Team created by : <img src="{{team.creatorImage}}" width="25" height="25"> {{team.creator}}</span>
     </div>
   </div>

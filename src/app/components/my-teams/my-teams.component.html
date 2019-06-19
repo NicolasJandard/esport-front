@@ -1,0 +1,12 @@
+<div class="col-lg-12 m-2">
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <th scope="col" colspan="3">Teams</th>
+    </thead>
+    <tr *ngFor="let team of userTeams">
+      <td>{{team.name}}</td>
+      <td><a [routerLink]="['/view', team.teamId]">View details</a></td>
+      <td><button class="btn btn-danger" (click)="removeTeam(team.teamId)">Remove</button></td>
+    </tr>
+  </table>
+</div>

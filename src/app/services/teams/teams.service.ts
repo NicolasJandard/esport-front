@@ -30,13 +30,22 @@ export class TeamsService {
     return this.http.get(this.apiUrl + '/team/details/' + team).pipe(map(this.extractData));
   }
 
+  getTeamsByUser(userEmail : String) {
+    return this.http.get(this.apiUrl + '/team/user/' + userEmail).pipe(map(this.extractData));
+  }
+
   getCommentsTeam(team : number) {
     return this.http.get(this.apiUrl + '/team/comments/' + team).pipe(map(this.extractData));
   }
 
   postComment(formValues, userEmail, teamId) {
     let comment = this.formCommentAsJSON(formValues, userEmail, teamId);
+    console.log(comment);
     return this.http.post(this.apiUrl + "/team/comment", comment);
+  }
+
+  removeTeam(id) {
+    return this.http.get(this.apiUrl + '/team/delete/' + id).pipe(map(this.extractData));
   }
 
   private formValuesAsJSON(data, user, pokeTeamList) {
@@ -49,6 +58,7 @@ export class TeamsService {
         4 : {name : data.pokemon_4, img : pokeTeamList[4].sprites.front_default, passive : data.passive_4, actives : {0 : data.active_4_0, 1 : data.active_4_1, 2 : data.active_4_2, 3 : data.active_4_3}},
         5 : {name : data.pokemon_5, img : pokeTeamList[5].sprites.front_default, passive : data.passive_5, actives : {0 : data.active_5_0, 1 : data.active_5_1, 2 : data.active_5_2, 3 : data.active_5_3}},
       },
+      name : data.name,
       comment : data.comment,
       tier : data.tier,
       creator : user.email
@@ -57,7 +67,7 @@ export class TeamsService {
     return team;
   }
 
-  private formCommentAsJSON(data, userEmail, teamId) {
+  private formCommentAsJSON(data, userEmail, teamId : number) {
     let comment = {
       text : data.comment,
       author : userEmail,

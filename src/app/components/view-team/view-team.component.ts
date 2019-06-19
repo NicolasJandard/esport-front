@@ -11,16 +11,18 @@ import { NgbRatingConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ViewTeamComponent implements OnInit {
   team : any = [];
+  idTeam : any;
   comments : any = [];
   user = JSON.parse(localStorage.getItem('user'));
   alreadyCommented : boolean = false;
 
   constructor(private teamsService: TeamsService, private route : ActivatedRoute, private config: NgbRatingConfig, private router : Router) { 
     config.max = 5;
+    this.idTeam = this.route.snapshot.params.id;
   }
 
   ngOnInit() {
-    this.teamsService.getDetailsTeam(this.route.snapshot.params.id).subscribe(response => {
+    this.teamsService.getDetailsTeam(this.idTeam).subscribe(response => {
       this.team = response
     });
     this.teamsService.getCommentsTeam(this.route.snapshot.params.id).subscribe(response => {
@@ -48,9 +50,9 @@ export class ViewTeamComponent implements OnInit {
   }
 
   formSubmit(f) {
-    this.teamsService.postComment(f.value, this.user.email, this.route.snapshot.params.id).subscribe(
-      onSuccess => {
-        this.router.navigate(['/view/' + this.route.snapshot.params.id]);
+    this.teamsService.postComment(f.value, this.user.email, this.route.snapshot.params.id).subscribe(response => {
+      this.comments = response;
+      this.alreadyCommented = true;
     });
   }
 }

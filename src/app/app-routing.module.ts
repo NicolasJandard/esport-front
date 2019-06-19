@@ -9,6 +9,7 @@ import { CreateTeamComponent } from './components/create-team/create-team.compon
 import { TopTeamsComponent } from './components/top-teams/top-teams.component';
 import { AuthenticationService } from './services/authentication/authentication.service';
 import { ViewTeamComponent } from './components/view-team/view-team.component';
+import { MyTeamsComponent } from './components/my-teams/my-teams.component';
 
 const routes: Routes = [
   {path: '', component: TopTeamsComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'pokedex', component: PokedexComponent },
   { path: 'skills', component: SkillsComponent },
   { path: 'create', component: CreateTeamComponent, canActivate: [AuthenticationService]},
-  { path: 'view/:id', component: ViewTeamComponent }
+  { path: 'view/:id', component: ViewTeamComponent },
+  { path: 'my-teams', component: MyTeamsComponent, canActivate: [AuthenticationService] }
 ];
 
 @NgModule({

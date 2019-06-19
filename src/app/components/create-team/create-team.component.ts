@@ -41,8 +41,9 @@ export class CreateTeamComponent implements OnInit {
     console.log(f.value);
     this.teams.createTeam(f.value, this.user, this.pokemonTeamList).subscribe(
       onSuccess => {
-        this.router.navigate(['/']);
-      }, onFail => {
+        this.router.navigate(['']);
+      },
+      onFail => {
         this.flag = 500;
       }
     );
